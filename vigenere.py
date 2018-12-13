@@ -6,7 +6,7 @@ parser.add_argument('cipher_text')
 parser.add_argument('encrypted_files',nargs='+')
 args = parser.parse_args()
 
-print "VIGENERE CRACKER\n"
+print("VIGENERE CRACKER\n") 
 
 
 ciphertexts=[]
@@ -20,7 +20,7 @@ for arg in args.encrypted_files:
 
 
 for i in xrange(1,int(args.max_keylength)+1):
-	print "--------------------------\n"
+	print("--------------------------\n")
 	keystr=''
 	for m in xrange(0,i):
 		splitcipher=''
@@ -36,20 +36,20 @@ for i in xrange(1,int(args.max_keylength)+1):
 		num = (ord(let)-65-ord('E')-65)%26
         	key = chr(num+65)
         	keystr+=(key)
-	print "keystring: "+keystr+"\n"
+	print("keystring: "+keystr+"\n")
 	plaintext=''
 	oldlen = len(keystr)
 	keystrN=''
-#	if oldlen > len(cipher_text):
-#		print "KEY LONGER THAN CIPHERTEXT\n"
-#	else:
+	#if oldlen > len(cipher_text):
+        #print "KEY LONGER THAN CIPHERTEXT\n"
+	#else:
 	i=0
 	while len(keystrN)!=len(cipher_text):
 		keystrN+=keystr[i%oldlen]
 		i+=1
 	if len(keystr)>len(cipher_text):
-		print "KEY TRUNCATED!\n"
-	print "key used: "+keystrN+"\n"
+		print("KEY TRUNCATED!\n")
+	print("key used: "+keystrN+"\n")
 	for x,y in zip(cipher_text,keystrN):
 		plaintext+= chr((ord(x)-65-ord(y)-65)%26+65)
-	print "plaintext: "+plaintext+"\n"
+	print("plaintext: "+plaintext+"\n")
